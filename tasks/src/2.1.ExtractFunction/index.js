@@ -6,31 +6,39 @@ import './styles.css';
      Выдели метод отрисовки лота (renderLot), метод отрисовки поста (renderPost) и используй их.
  */
 
+function renderLot(content) {
+  return (<div className="lot">
+    <div className="lotName">Форма для выпекания</div>
+    <div className="lotDescription">Идеальна для приготовления десертов!</div>
+  </div>)
+}
+
+function renderPost() {
+  const postAuthors = ['Парень не промах', 'Милая девушка'];
+  const postTimes = ['2 часа назад', '3 часа назад'];
+  const postMessages = ['Попробую с удовольствием ;)', 'Можно использовать для выпекания чизкейков :)'];
+
+  let markup = [];
+
+  for (let i = 0; i < postAuthors.length; i++) {
+    markup.push(
+      <div key="" className="post">
+        <div className="postHeader">
+          <span className="postAuthor">{postAuthors[i]}</span>
+          <br />
+          <span className="postTime">{postTimes[i]}</span>
+        </div>
+        <div className="postMessage">{postMessages[i]}</div>
+      </div>)
+  }
+  return markup;
+}
+
 ReactDom.render(
   <div className="page">
-    <div className="lot">
-      <div className="lotName">Форма для выпекания</div>
-      <div className="lotDescription">Идеальна для приготовления десертов!</div>
-    </div>
+    {renderLot()}
     <div className="posts">
-      <div className="post">
-        <div className="postHeader">
-          <span className="postAuthor">Парень не промах</span>
-          <br />
-          <span className="postTime">2 часа назад</span>
-        </div>
-        <div className="postMessage">Попробую с удовольствием ;)</div>
-      </div>
-      <div className="post">
-        <div className="postHeader">
-          <span className="postAuthor">Милая девушка</span>
-          <br />
-          <span className="postTime">3 часа назад</span>
-        </div>
-        <div className="postMessage">
-          Можно использовать для выпекания чизкейков :)
-        </div>
-      </div>
+      {renderPost()}
     </div>
   </div>,
   document.getElementById('app')
